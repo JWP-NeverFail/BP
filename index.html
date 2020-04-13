@@ -55,9 +55,9 @@
 
         <!-- <title>Hello, world!</title> -->
         <link rel="stylesheet" href="style.css">
-        
+
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e92df09fb619271"></script>
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e92df09fb619271"></script>
 
     </head>
 
@@ -99,24 +99,23 @@
 
         <div class="file-upload-content">
             <img class="file-upload-image" id="face-image" src="#" alt="your image" />
-            <p class = "result-message">
-            </p>    
+            <p class="result-message">
+            </p>
             <div id="label-container"></div>
             <div id="loading" class="animated bounce">
                 <div class="spinner-border" role="status">
                     <span class="sr-only">Loading...</span>
                 </div>
                 <p class="text-center">Wait for it...!</p>
-                
+
                 <!-- Go to www.addthis.com/dashboard to customize your tools -->
                 <div class="addthis_inline_share_toolbox_ga8o"></div>
-            
-                
+
             </div>
         </div>
     </div>
 
-    <div id="webcam-container"></div>
+    <!-- <div id="webcam-container"></div> -->
 
     <div id="disqus_thread"></div>
     <script>
@@ -219,7 +218,6 @@
             const prediction = await model.predict(image, false);
             prediction.sort((a, b) => parseFloat(b.probability) - parseFloat(a.probability));
             console.log(prediction[0].classname);
-            
             var resultMessage;
             switch (prediction[0].classname) {
                 case "Jisoo":
@@ -228,18 +226,16 @@
                 case "Jennie":
                     resultMessage = "You look like Jennie!"
                     break;
-                 case "Rosé":
+                case "Rosé":
                     resultMessage = "You look like Rosé!"
                     break;
-              case "Lisa":
+                case "Lisa":
                     resultMessage = "You look like Lisa!"
                     break;
                 default:
                     resultMessage = "Plaese put a clear photo."
             }
-            
             $('.result-message').html(resultMessage);
-            
             for (let i = 0; i < maxPredictions; i++) {
                 const classPrediction =
                     prediction[i].className + ": " + prediction[i].probability.toFixed(2);
